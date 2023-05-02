@@ -6,8 +6,9 @@
 <br>
 <br>
 
-<button (click)="startRecording()">Comenzar a grabar</button>
-<button (click)="stopRecording()">Detener la grabación</button>
+<button (click)="startRecording()" *ngIf=enabled>Comenzar a grabar</button>
+<button (click)="newRecording()" *ngIf=new_recording>Nueva grabación</button>
+<button (click)="stopRecording()" *ngIf=stop_recording>Detener la grabación</button>
 
 <br>
 

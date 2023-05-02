@@ -12,13 +12,20 @@ export class AppComponent implements OnInit {
 
   botMessage: any;
 
+  enabled: any;
+  new_recording: any;
+  stop_recording: any;
+
+
   mediaRecorder: any;
   audioChunks: any[] = [];
 
   constructor(private http: HttpClient){}
 
   ngOnInit(): void {
-      
+      this.enabled = true;
+      this.new_recording = false;
+      this.stop_recording = false;
   }
 
   title = 'conversation_ai_ui';
@@ -38,21 +45,25 @@ export class AppComponent implements OnInit {
         });
         this.mediaRecorder.start();
       });
+      this.enabled = false;
+      this.stop_recording = true;
   }
 
   stopRecording() {
     if (this.mediaRecorder && this.mediaRecorder.state !== 'inactive') {
       this.mediaRecorder.stop();
+      this.stop_recording = false;
       this.mediaRecorder.addEventListener('stop', () => {
         const audioBlob = new Blob(this.audioChunks, { type: 'audio/wav' });
-        // const audioUrl = URL.createObjectURL(audioBlob);
-        // this.audioPlayer.nativeElement.src = audioUrl;
+        const audioUrl = URL.createObjectURL(audioBlob);
+        this.audioPlayer.nativeElement.src = audioUrl;
         // this.uploadAudio(this.audioPlayer.nativeElement.src);
         
         // Supongamos que blob es el objeto Blob que queremos convertir
         const file = new File([audioBlob], 'nombre-archivo', { type: audioBlob.type, lastModified: Date.now() });
 
         this.uploadAudio(file);
+
       });
     }
   }
@@ -66,13 +77,24 @@ export class AppComponent implements OnInit {
     // Enviar la solicitud HTTP POST a la API Django
     this.http.post('http://localhost:8000/audio/', formData)
       .subscribe({
-        next: response=>{
-          console.log('Archivo de audio enviado exitosamente ', response);
+        next: (response:any)=>{
+          console.log('Archivo de audio enviado exitosamente ', response.generated_text);
+          const mensaje = new SpeechSynthesisUtterance(response.generated_text);
+          // Lee el texto utilizando la API de SpeechSynthesis del navegador web
+          window.speechSynthesis.speak(mensaje);
+          this.new_recording = true;
         }, 
         error: error=>{
           console.log('Error al enviar el archivo de audio ', error);
+          this.enabled = true;
+          this.new_recording = true;
         }
       });
   }
     
+  newRecording(){
+    this.enabled = true;
+    this.new_recording = false;
+    location.reload(); 
+  }
 }
