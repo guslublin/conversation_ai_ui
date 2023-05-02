@@ -1,0 +1,18 @@
+<h1>Hello</h1>
+<button (click)="getBotMessage()">Hablar con el chatbot</button>
+<p>Mensaje: {{ botMessage }}</p>
+
+
+<br>
+<br>
+
+<button (click)="startRecording()">Comenzar a grabar</button>
+<button (click)="stopRecording()">Detener la grabación</button>
+
+<br>
+
+<br>
+
+<audio controls #audioPlayer></audio>
+
+<router-outlet></router-outlet>
