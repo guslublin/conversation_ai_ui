@@ -11,9 +11,17 @@
 <button (click)="stopRecording()" *ngIf=stop_recording>Detener la grabación</button>
 
 <br>
-
 <br>
 
 <audio controls #audioPlayer></audio>
+
+<br>
+<br>
+
+<form (ngSubmit)="onSubmit()" #myForm="ngForm">
+    <input type="file" name="pdf" (change)="onFileSelected($event)" required>
+    <button type="submit" [disabled]="myForm.invalid">Enviar</button>
+    <!-- <button (click)="stopRecording()"></button> -->
+</form>
 
 <router-outlet></router-outlet>

@@ -20,6 +20,8 @@ export class AppComponent implements OnInit {
   mediaRecorder: any;
   audioChunks: any[] = [];
 
+  pdfFile: File | undefined;
+
   constructor(private http: HttpClient){}
 
   ngOnInit(): void {
@@ -67,6 +69,7 @@ export class AppComponent implements OnInit {
       });
     }
   }
+  
 
   uploadAudio(file: File) {
     console.log(file);
@@ -96,5 +99,17 @@ export class AppComponent implements OnInit {
     this.enabled = true;
     this.new_recording = false;
     location.reload(); 
+  }
+
+  onFileSelected(event: any): void {
+    this.pdfFile = event.target.files[0];
+  }
+
+  onSubmit(): void {
+    const formData = new FormData();
+    formData.append('pdf', this.pdfFile || '', this.pdfFile?.name);
+    this.http.post('http://localhost:8000/upload_pdf/', formData).subscribe(response => {
+      console.log(response);
+    });
   }
 }
