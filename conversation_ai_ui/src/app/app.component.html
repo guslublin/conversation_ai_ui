@@ -1,27 +1,39 @@
-<h1>Hello</h1>
-<button (click)="getBotMessage()">Hablar con el chatbot</button>
-<p>Mensaje: {{ botMessage }}</p>
+<app-navbar></app-navbar>
 
+<section class="section">
 
-<br>
-<br>
+  <div class="container">
+    <div class="columns is-mobile is-centered">
+      <div class="column is-three-quarters">
+        <div class="block">
+          <h1 class="title">
+            Inteligencia Artificial
+          </h1>
+        </div>
 
-<button (click)="startRecording()" *ngIf=enabled>Comenzar a grabar</button>
-<button (click)="newRecording()" *ngIf=new_recording>Nueva grabación</button>
-<button (click)="stopRecording()" *ngIf=stop_recording>Detener la grabación</button>
+        <br>
+        <div class="block">
+          <div class="card">
+            <div class="card-content">
+              <div class="container">
+                <div class="tabs is-centered">
+                  <ul>
+                    <!-- <li class="is-active"><a>Habla con la IA</a></li> -->
+                    <li [routerLink]="['/habla-con-ia']"><a>Habla con la IA</a></li>
+                    <li><a [routerLink]="['/actualizar-base-pdf']">Actualizar BD de PDF (Pinecone)</a></li>
+                    <li><a [routerLink]="['/conversacion-pdf']">Conversación con PDF (Pinecone)</a></li>
+                    <!-- <li><a [routerLink]="['/actualizar-base-pdf-cohere']">Actualizar BD de PDF (Cohere - Qdrant)</a></li> -->
+                    <!-- <li><a [routerLink]="['/conversacion-pdf-cohere']">Conversación con PDF (Cohere - Qdrant)</a></li> -->
+                  </ul>
+                </div>
+              </div>
+              <router-outlet></router-outlet>
+            </div>
+          </div>
+        </div>
 
-<br>
-<br>
+      </div>
+    </div>
+  </div>
+</section>
 
-<audio controls #audioPlayer></audio>
-
-<br>
-<br>
-
-<form (ngSubmit)="onSubmit()" #myForm="ngForm">
-    <input type="file" name="pdf" (change)="onFileSelected($event)" required>
-    <button type="submit" [disabled]="myForm.invalid">Enviar</button>
-    <!-- <button (click)="stopRecording()"></button> -->
-</form>
-
-<router-outlet></router-outlet>

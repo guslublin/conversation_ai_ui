@@ -1,0 +1,89 @@
+<section class="section">
+
+    <div class="container">
+      <div class="columns is-mobile is-centered">
+        <div class="column">
+          <!-- <h1 class="subtitle">
+            Lista de archivos
+          </h1>
+          <br> -->
+  
+          <nav class="panel">
+            <p class="panel-heading">
+              PINECONE - Archivos
+            </p>
+            <!-- <div class="panel-block">
+              <p class="control has-icons-left">
+                <input class="input" type="text" placeholder="Search">
+                <span class="icon is-left">
+                  <i class="fas fa-search" aria-hidden="true"></i>
+                </span>
+              </p>
+            </div> -->
+            <p class="panel-tabs">
+              <a [routerLink]="['/actualizar-base-pdf']">Sin procesar</a>
+              <a class="is-active" >Procesados</a>
+            </p>          
+            <label class="panel-block" *ngFor="let item of items">
+              <!-- <input type="checkbox"> -->
+              {{ item }}
+            </label>
+            <!-- <div class="panel-block">
+              <button class="button is-link is-outlined is-fullwidth">
+                Reset all filters
+              </button>
+            </div> -->
+          </nav>
+  
+  
+  
+          <br>
+          <!-- <table class="table is-fullwidth">
+            <thead>
+              <tr>
+                <th>Documentos:</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of items">
+                <td>{{ item }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <br> -->
+
+          
+          <!-- <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+  
+            <div class="file has-name">
+              <label class="file-label">
+                <input class="file-input" type="file" name="pdf" (change)="onFileSelected($event)" required>
+                <span class="file-cta">
+                  <span class="file-label">
+                    Seleccionar PDF
+                  </span>
+                </span>
+                <span class="file-name">
+                  {{filename}}
+                </span>
+              </label>
+            </div>
+  
+            <br>
+            <button type="submit" *ngIf="subir_enabled" class="button is-link">Subir PDF</button>
+            <progress class="progress is-small is-link" max="100" *ngIf="!subir_enabled"></progress>
+          </form>
+          <br>
+          <div class="block">
+            <button class="button is-info" *ngIf="entrenar_enabled" (click)="entrenar_ia()">Entrenar IA</button>
+          </div>
+          <div class="block">
+            <progress class="progress is-small is-info" max="100" *ngIf="!entrenar_enabled"></progress>
+          </div> -->
+  
+  
+        </div>
+      </div>
+    </div>
+  </section>
+  

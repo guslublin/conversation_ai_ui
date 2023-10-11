@@ -1,0 +1,56 @@
+<section class="section">
+
+  <div class="container">
+    <div class="columns is-mobile is-centered">
+      <div class="column">
+
+        <nav class="panel">
+          <p class="panel-heading">
+            PINECONE - Archivos
+          </p>
+          <p class="panel-tabs">
+            <a class="is-active">Sin procesar</a>
+            <a [routerLink]="['/actualizar-base-pdf-procesados']">Procesados</a>
+          </p>
+          <label class="panel-block" *ngFor="let item of items">
+            {{ item }}
+          </label>
+        </nav>
+
+        <br>
+
+        <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+
+          <div class="file has-name">
+            <label class="file-label">
+              <input class="file-input" type="file" name="pdf" (change)="onFileSelected($event)" required>
+              <span class="file-cta">
+                <span class="file-label">
+                  Seleccionar PDF
+                </span>
+              </span>
+              <span class="file-name">
+                {{filename}}
+              </span>
+            </label>
+          </div>
+
+          <br>
+          <button type="submit" *ngIf="subir_enabled" class="button is-link">Subir PDF</button>
+          <progress class="progress is-small is-link" max="100" *ngIf="!subir_enabled"></progress>
+        </form>
+
+        <br>
+
+        <div class="block">
+          <button class="button is-info" *ngIf="entrenar_enabled" (click)="entrenar_ia()">Entrenar IA</button>
+        </div>
+
+        <div class="block">
+          <progress class="progress is-small is-info" max="100" *ngIf="!entrenar_enabled"></progress>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

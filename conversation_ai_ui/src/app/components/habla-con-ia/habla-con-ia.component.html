@@ -1,0 +1,28 @@
+<section class="section">
+
+  <div class="container">
+    <div class="columns is-mobile is-centered">
+      <div class="column">
+        <div class="block">
+          <h1 class="subtitle">
+            Habla con la IA
+          </h1>
+        </div>
+        <br>
+        <div class="container">
+          <div class="tabs is-centered">
+
+
+            <button (click)="startRecording()" *ngIf=enabled class="button is-primary">Consultar</button>
+            <button (click)="newRecording()" *ngIf=new_recording class="button is-info">Nueva consulta</button>
+            <button (click)="stopRecording()" *ngIf=stop_recording class="button is-danger">Enviar</button>
+            
+            <audio controls #audioPlayer></audio>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

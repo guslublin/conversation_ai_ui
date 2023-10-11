@@ -1,0 +1,77 @@
+<section class="section">
+
+  <div class="container">
+
+    <div class="columns is-mobile is-centered">
+      <div class="column">
+        <h1 class="subtitle">
+          Conversa con los documentos (Pinecone)
+        </h1>
+        <!-- <br>
+        <button class="button is-success" (click)="consultar_pdf()">Consultar pdf</button>
+        <br>
+        <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+          <button type="submit" [disabled]="myForm.invalid">Enviar y grabar consulta</button>
+          <button (click)="stopRecording()">Detener la grabación</button>
+        </form>
+        <br>
+        <h1>Pusher Test</h1>
+        <br>
+        <p>
+          Try publishing an event to channel <code>my-channel</code>
+          with event name <code>my-event</code>.
+        </p>
+        <br>
+        <div class="block">
+          <button class="button is-success" (click)="sendPusherEvent()">Enviar evento Pusher</button>
+
+        </div> -->
+
+        <div class="block" *ngFor="let msg of messages">
+          <article class="message {{msg.theme}}">
+            <div class="message-header">
+              <p>{{msg.username}}</p>
+              <!-- <button class="delete" aria-label="delete"></button> -->
+            </div>
+            <div class="message-body">
+              {{msg.message}}
+            </div>
+          </article>
+        </div>
+
+        <div class="block">
+          <progress class="progress is-small is-link" max="100" *ngIf="enviar_enabled"></progress>
+        </div>
+
+        <div class="block">
+          <article class="media">
+            <div class="media-content">
+              <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+
+                <div class="field">
+                  <p class="control">
+                    <textarea class="textarea" placeholder="Escriba su consulta:" name="consulta" [(ngModel)]="consulta"></textarea>
+                  </p>
+                </div>
+
+                <nav class="level">
+                  <div class="level-left"></div>
+                  <div class="level-right">
+                    <div class="level-item">
+                      <button type="submit" class="button is-info">Enviar</button>
+                    </div>
+                  </div>
+                </nav>
+
+              </form>
+
+            </div>
+          </article>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

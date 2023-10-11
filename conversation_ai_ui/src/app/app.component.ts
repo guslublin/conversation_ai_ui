@@ -22,6 +22,8 @@ export class AppComponent implements OnInit {
 
   pdfFile: File | undefined;
 
+  file: any;
+
   constructor(private http: HttpClient){}
 
   ngOnInit(): void {
@@ -59,20 +61,16 @@ export class AppComponent implements OnInit {
         const audioBlob = new Blob(this.audioChunks, { type: 'audio/wav' });
         const audioUrl = URL.createObjectURL(audioBlob);
         this.audioPlayer.nativeElement.src = audioUrl;
-        // this.uploadAudio(this.audioPlayer.nativeElement.src);
         
         // Supongamos que blob es el objeto Blob que queremos convertir
         const file = new File([audioBlob], 'nombre-archivo', { type: audioBlob.type, lastModified: Date.now() });
 
         this.uploadAudio(file);
-
       });
     }
   }
-  
 
   uploadAudio(file: File) {
-    console.log(file);
     
     const formData = new FormData();
     formData.append('audio_file', file);
@@ -106,10 +104,56 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const formData = new FormData();
-    formData.append('pdf', this.pdfFile || '', this.pdfFile?.name);
-    this.http.post('http://localhost:8000/upload_pdf/', formData).subscribe(response => {
-      console.log(response);
-    });
+    this.startRecording();
   }
+
+
+  // stopRecording_2() {
+  //   if (this.mediaRecorder && this.mediaRecorder.state !== 'inactive') {
+  //     this.mediaRecorder.stop();
+  //     this.stop_recording = false;
+  //     this.mediaRecorder.addEventListener('stop', () => {
+  //       const audioBlob = new Blob(this.audioChunks, { type: 'audio/wav' });
+  //       const audioUrl = URL.createObjectURL(audioBlob);
+  //       this.audioPlayer.nativeElement.src = audioUrl;
+        
+  //       // Supongamos que blob es el objeto Blob que queremos convertir
+  //       const file = new File([audioBlob], 'nombre-archivo', { type: audioBlob.type, lastModified: Date.now() });
+  //       console.log(file);
+  //       this.uploadAudio_2(file) ;
+  //     });
+  //   }
+  // }
+  
+  // uploadAudio_2(file: File) {
+  //   const formData = new FormData();
+  //   formData.append('pdf', this.pdfFile || '', this.pdfFile?.name);
+  //   formData.append('audio_file', file);
+    
+  //   // this.http.post('http://localhost:8000/upload_pdf/', formData)
+  //   this.http.post('http://localhost:8000/upload_pdf_langchain/', formData)
+  //     .subscribe({
+  //       next: (response:any)=>{
+  //         console.log('Response: ', response);
+          
+  //         // console.log('Archivo de audio enviado exitosamente ', response.generated_text_2);
+  //         // const mensaje = new SpeechSynthesisUtterance(response.generated_text_2);
+
+  //         console.log('Archivo de audio enviado exitosamente ', response.text_response_ai);
+  //         const mensaje = new SpeechSynthesisUtterance(response.text_response_ai);
+
+
+  //         // Lee el texto utilizando la API de SpeechSynthesis del navegador web
+  //         window.speechSynthesis.speak(mensaje);
+  //         this.new_recording = true;
+  //       }, 
+  //       error: error=>{
+  //         console.log('Error al enviar el archivo de audio ', error);
+  //         this.enabled = true;
+  //         this.new_recording = true;
+  //       }
+  //     });
+  // }  
+
+
 }
