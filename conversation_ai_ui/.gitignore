@@ -1,0 +1,69 @@
+# NPM dependencies
+node_modules/
+
+# Angular build files
+dist/
+out-tsc/
+
+# TypeScript
+*.tsbuildinfo
+
+# Environment variables
+src/environments/*.ts
+
+# Angular cache
+.angular/cache/
+.angular/config.json
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+node_modules/
+
+# Compiled JavaScript
+*.js
+*.jsx
+*.js.map
+
+# Compiled CSS
+*.css.map
+
+# IDE/Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Optional npm cache directory
+.npm/
+
+# Temp files
+tmp/
+temp/
+
+# Test coverage
+coverage/
+
+# Production bundle
+build/
+
+# Compiled output
+lib/
+
+# Ignore package-lock.json or yarn.lock if you're using them in CI/CD pipelines but prefer npm install over locking versions.
+package-lock.json
+yarn.lock
+
+# Compiled Angular output
+src/assets/
